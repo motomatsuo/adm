@@ -10,7 +10,8 @@ class ApiClient {
   private token: string | null = null
 
   constructor(baseUrl: string) {
-    this.baseUrl = baseUrl
+    // Remover barra no final da URL base para evitar barras duplas
+    this.baseUrl = baseUrl.replace(/\/+$/, '')
     this.loadToken()
   }
 
@@ -31,7 +32,9 @@ class ApiClient {
     endpoint: string,
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
-    const url = `${this.baseUrl}${endpoint}`
+    // Garantir que o endpoint comece com /
+    const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+    const url = `${this.baseUrl}${normalizedEndpoint}`
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       ...(options.headers as Record<string, string> || {}),
