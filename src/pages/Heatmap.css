@@ -1,0 +1,259 @@
+.heatmap-container {
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+}
+
+.heatmap-header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.toggle-container {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.toggle-button {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-button:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+}
+
+.toggle-button.active {
+  background-color: #667eea;
+  color: white;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+.map-info {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.map-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.mode-indicator {
+  padding: 4px 12px;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.map-wrapper {
+  flex: 1;
+  min-height: 600px;
+  height: calc(100vh - 300px);
+  max-height: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-color: #fff;
+}
+
+/* Estilos críticos para o Leaflet funcionar */
+.map-wrapper .leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  position: relative !important;
+  background-color: #e5e3df !important;
+  z-index: 1;
+  min-height: 600px !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Garantir que o mapa seja visível */
+.map-wrapper .leaflet-map-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.map-wrapper .leaflet-tile-pane {
+  z-index: 2;
+}
+
+.map-wrapper .leaflet-overlay-pane {
+  z-index: 3;
+}
+
+.map-wrapper .leaflet-pane {
+  z-index: 1;
+}
+
+.map-wrapper .leaflet-tile-pane {
+  z-index: 2;
+}
+
+.map-wrapper .leaflet-overlay-pane {
+  z-index: 3;
+}
+
+.map-wrapper .leaflet-tile {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.map-wrapper .leaflet-tile-container img {
+  max-width: none !important;
+}
+
+.map-loading,
+.map-error,
+.map-empty {
+  text-align: center;
+  padding: 48px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  color: #666;
+  font-size: 16px;
+}
+
+.map-error {
+  color: #c33;
+}
+
+/* Tooltip do heatmap */
+.tooltip-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.heatmap-tooltip {
+  position: fixed;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  max-width: 400px;
+  max-height: 500px;
+  overflow-y: auto;
+  pointer-events: auto;
+  border: 1px solid #e0e0e0;
+}
+
+.tooltip-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.tooltip-close:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tooltip-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tooltip-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.tooltip-client {
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border-left: 3px solid #667eea;
+}
+
+.tooltip-client:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.client-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 6px 0;
+}
+
+.client-vendedor {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 4px 0;
+}
+
+.client-info {
+  font-size: 13px;
+  color: #555;
+  margin: 4px 0;
+}
+
+.client-status {
+  font-size: 12px;
+  color: #888;
+  margin: 4px 0 0 0;
+  font-style: italic;
+}

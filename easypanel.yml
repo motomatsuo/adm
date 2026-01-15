@@ -1,0 +1,33 @@
+# Configuração para Easypanel
+# Este arquivo pode ser usado como referência para configurar os serviços no Easypanel
+
+services:
+  backend:
+    type: docker
+    dockerfile: Dockerfile.backend
+    context: .
+    port: 3001
+    environment:
+      - PORT=3001
+      - FRONTEND_URL=${FRONTEND_URL}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+    healthcheck:
+      path: /health
+      interval: 30
+      timeout: 10
+      retries: 3
+    restart: always
+
+  frontend:
+    type: docker
+    dockerfile: Dockerfile.frontend
+    context: .
+    buildArgs:
+      - VITE_API_URL=${VITE_API_URL}
+    port: 80
+    depends_on:
+      - backend
+    restart: always
