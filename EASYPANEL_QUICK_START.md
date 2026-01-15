@@ -41,9 +41,13 @@ Guia rápido para fazer deploy no Easypanel.
    - Branch: `main`
 
 2. **Configurações de Build:**
-   - **Dockerfile**: `Dockerfile.backend` ⚠️ **IMPORTANTE: Especifique aqui!**
-   - **Context**: `/` (raiz)
+   - **Dockerfile**: `Dockerfile` (ou deixe vazio se o contexto for `backend/`)
+   - **Context**: `backend/` ⚠️ **IMPORTANTE: Configure o contexto como `backend/`**
    - **Build Command**: (deixe vazio)
+   
+   ⚠️ **Nota**: Se o Easypanel permitir configurar o contexto, use `backend/`. Se não, você pode:
+   - Usar `Dockerfile.backend` na raiz com contexto `/`
+   - Ou criar um `Dockerfile` dentro da pasta `backend/` (já criado)
 
 3. **Porta:**
    - Porta Interna: `3001`

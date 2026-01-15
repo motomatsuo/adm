@@ -1,0 +1,153 @@
+.vendedor-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.vendedor-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.vendedor-card.indisponivel {
+  opacity: 0.7;
+  background: #f5f5f5;
+}
+
+.vendedor-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.vendedor-foto {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.vendedor-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vendedor-foto-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.vendedor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.vendedor-nome {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vendedor-status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.vendedor-status.disponivel {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.vendedor-status.indisponivel {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.vendedor-metricas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.metrica-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metrica-label {
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.metrica-valor {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.metrica-variacao {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.variacao-icon {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.variacao-positiva {
+  color: #2e7d32;
+}
+
+.variacao-negativa {
+  color: #c62828;
+}
+
+.variacao-neutra {
+  color: #666;
+}
+
+.metrica-info {
+  font-size: 11px;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .vendedor-metricas {
+    grid-template-columns: 1fr;
+  }
+
+  .vendedor-card {
+    padding: 12px;
+  }
+}

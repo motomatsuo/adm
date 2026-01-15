@@ -213,6 +213,82 @@ class ApiClient {
       body: JSON.stringify({ codigos }),
     })
   }
+
+  async getVendedores() {
+    return this.request<{
+      id_protheus: string
+      nome: string
+      foto: string | null
+      disponivel: boolean
+      faturamento_atual: number
+      faturamento_anterior: number
+      faturamento_variacao: number
+      faturamento_medio: number
+      qtd_pedidos_atual: number
+      qtd_pedidos_anterior: number
+      qtd_pedidos_variacao: number
+      pedidos_medio: number
+      qtd_clientes_carteira: number
+      clientes_ativos: number
+    }[]>('/api/vendedores')
+  }
+
+  async getVendedorMetricas(id: string) {
+    return this.request<{
+      vendedor: {
+        id_protheus: string
+        nome: string
+        foto: string | null
+        disponivel: boolean
+      }
+      faturamento_atual: number
+      faturamento_anterior: number
+      faturamento_variacao: number
+      faturamento_medio: number
+      qtd_pedidos_atual: number
+      qtd_pedidos_anterior: number
+      qtd_pedidos_variacao: number
+      pedidos_medio: number
+      qtd_clientes_carteira: number
+      clientes_ativos: number
+    }>(`/api/vendedores/${id}/metricas`)
+  }
+
+  async getVendedorCarteira(id: string, status?: string, classificacao?: string) {
+    const params = new URLSearchParams()
+    if (status) params.append('status', status)
+    if (classificacao) params.append('classificacao', classificacao)
+    const url = params.toString() 
+      ? `/api/vendedores/${id}/carteira?${params.toString()}` 
+      : `/api/vendedores/${id}/carteira`
+    return this.request<{
+      id: number
+      codigo: string
+      nome_empresa: string
+      vendedor: string | null
+      qtd_pedido: number
+      fat_total: number
+      ticket_medio: number
+      pri_compra: string | null
+      ult_compra: string | null
+      int_compra: number | null
+      dduc: number | null
+      recencia: number
+      frequencia: number
+      valor: number
+      media_nota: number | null
+      status: string | null
+      acao: string | null
+      ranking: string | null
+      rec_freq: number | null
+      id_atendente: number | null
+      documento: string | null
+      cs_ativo: boolean | null
+      classificacao: string | null
+      descricao: string | null
+      tp_comercio: string | null
+    }[]>(url)
+  }
 }
 
 export const apiClient = new ApiClient(API_URL)
