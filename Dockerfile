@@ -2,7 +2,7 @@
 # Este é o Dockerfile padrão usado pelo Easypanel
 # Para o backend, use Dockerfile.backend
 
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
