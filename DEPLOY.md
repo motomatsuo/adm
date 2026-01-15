@@ -31,9 +31,13 @@ git push origin main
    - Branch: `main` (ou sua branch de produção)
 
 2. **Configurações de Build:**
-   - Dockerfile: `Dockerfile.backend`
+   - Dockerfile: `Dockerfile.backend` (ou deixe vazio se usar o padrão)
    - Context: `/` (raiz do repositório)
    - Build Command: (deixe vazio, o Dockerfile já faz o build)
+   
+   ⚠️ **Nota**: Se o Easypanel não permitir especificar o Dockerfile, você pode:
+   - Renomear temporariamente `Dockerfile.backend` para `Dockerfile` antes do deploy
+   - Ou criar um `Dockerfile` na raiz apontando para o backend
 
 3. **Variáveis de Ambiente:**
    Adicione as seguintes variáveis no Easypanel:
@@ -73,13 +77,15 @@ git push origin main
    - Branch: `main` (ou sua branch de produção)
 
 2. **Configurações de Build:**
-   - Dockerfile: `Dockerfile.frontend`
+   - Dockerfile: `Dockerfile` (ou deixe vazio para usar o padrão)
    - Context: `/` (raiz do repositório)
    - Build Args:
      ```
      VITE_API_URL=https://seu-dominio-backend.com
      ```
      ⚠️ Substitua pela URL real do backend configurada no Easypanel
+   
+   ⚠️ **Nota**: O `Dockerfile` na raiz já está configurado para o frontend. Se precisar usar `Dockerfile.frontend`, especifique no campo Dockerfile.
 
 3. **Porta:**
    - Porta Interna: `80`

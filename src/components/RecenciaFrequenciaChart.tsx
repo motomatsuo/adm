@@ -1,5 +1,4 @@
 import { useEffect, useState, useMemo } from 'react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
 import { apiClient } from '@/lib/api'
 import { useFilters } from '@/contexts/FilterContext'
 import './RecenciaFrequenciaChart.css'

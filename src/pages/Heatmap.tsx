@@ -68,7 +68,6 @@ function MapMouseTracker({
   geolocData: GeolocData[]
   onClientsFound: (clients: RFVData[] | null, position: { x: number; y: number } | null) => void 
 }) {
-  const map = useMap()
   const MAX_CLIENTS_TO_SHOW = 5
   const RADIUS_KM = 0.5 // Raio de 500 metros para buscar clientes próximos
 
@@ -388,12 +387,6 @@ export default function Heatmap() {
           zoom={5}
           style={{ height: '100%', width: '100%', minHeight: '600px' }}
           scrollWheelZoom={true}
-          whenReady={(map) => {
-            // Forçar redraw quando o mapa estiver pronto
-            setTimeout(() => {
-              map.target.invalidateSize()
-            }, 100)
-          }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
